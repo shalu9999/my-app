@@ -18,11 +18,12 @@
                  }
          
          stage('Docker Image Push'){
-                withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]){                       
-                sh "docker login -u shalu9999 -p ${dockerPassword}"
-                }
-                sh 'docker push shalu9999/myweb:0.0.2'
-                }
+         withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]){                       
+         sh "docker login -u shalu9999 -p ${dockerPassword}"
+        }
+         sh 'docker push shalu9999/myweb:0.0.2'
+        }
+
          stage('Nexus Image Push'){
                 sh "docker login -u admin -p 1234 15.207.20.208:8083"
                 sh "docker tag shalu9999/myweb:0.0.2 15.207.20.208:8083/shalu9999:1.0.0"
